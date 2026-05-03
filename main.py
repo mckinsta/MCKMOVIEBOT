@@ -3,7 +3,13 @@ from config import BOT_TOKEN, API_ID, API_HASH
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
-# 🔥 Bot client (plugins load होणार)
+# 🔥 Debug prints (check env variables)
+print("🚀 Bot Starting...")
+print("TOKEN:", BOT_TOKEN)
+print("API_ID:", API_ID)
+print("API_HASH:", API_HASH)
+
+# 🔥 Bot client
 app = Client(
     "movie_bot",
     bot_token=BOT_TOKEN,
@@ -12,7 +18,12 @@ app = Client(
     plugins=dict(root="plugins")
 )
 
-# 🔥 Dummy server (Koyeb साठी)
+# 🔥 Test command (direct main check)
+@app.on_message(filters.command("hi"))
+async def hi(client, message):
+    await message.reply("Hello working ✅")
+
+# 🔥 Dummy server (Koyeb health check)
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -24,16 +35,6 @@ def run_server():
     server.serve_forever()
 
 threading.Thread(target=run_server, daemon=True).start()
-
-print("🚀 Bot Starting...")
-
-# 🔥 Debug (IMPORTANT)
-print("TOKEN:", BOT_TOKEN)
-
-# 🔥 Quick test (guarantee working)
-@app.on_message(filters.command("hi"))
-async def hi(client, message):
-    await message.reply("Hello working ✅")
 
 # 🔥 Run bot
 app.run()
