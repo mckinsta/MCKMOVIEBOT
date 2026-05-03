@@ -1,4 +1,4 @@
-from pyrogram import Client
+from pyrogram import Client, filters
 from config import BOT_TOKEN, API_ID, API_HASH
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
@@ -9,6 +9,12 @@ app = Client(
     api_id=API_ID,
     api_hash=API_HASH
 )
+
+# ✅ TEST COMMAND (run च्या आधी ठेव)
+@app.on_message(filters.command("test"))
+async def test(client, message):
+    await message.reply("Bot working ✅")
+
 
 # 🔥 Dummy server for Koyeb
 class Handler(BaseHTTPRequestHandler):
@@ -23,7 +29,5 @@ def run_server():
 
 threading.Thread(target=run_server).start()
 
+# ✅ शेवटी run
 app.run()
-@Client.on_message(filters.command("test"))
-async def test(client, message):
-    await message.reply("Bot working ✅")
