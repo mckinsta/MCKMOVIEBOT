@@ -1,16 +1,17 @@
-BOT_TOKEN = os.environ.get("8743936811:AAF9VWrkq8zMURZtfdpvBLa-i2GiKk9dHN0")
-API_ID = int(os.environ.get("22083216" , 0))
-API_HASH = os.environ.get("a4c3ce9493061323cbb5741370aa11f1")
+import os
 
-ADMINS = [int(x) for x in os.getenv("1489423238", "").split()]
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+API_ID = int(os.getenv("API_ID", 0))
+API_HASH = os.getenv("API_HASH")
 
-DATABASE_URI = os.environ.get("mongodb+srv://Koushal:Koushal@koushal.zjd00.mongodb.net/?appName=Koushal"
-                             )
-LOG_CHANNEL = int(os.getenv("-1003913030328", 0))
-FORCE_SUB = None  # optional
+DATABASE_URI = os.getenv("DATABASE_URI")
 
-UPI_ID = os.getenv("morekoushal@oksbi")
-OWNER = os.getenv("@morekoushal1444")
+LOG_CHANNEL = int(os.getenv("LOG_CHANNEL", 0))
 
-LOGO = os.getenv("https://your-logo-link.jpg")
-QR = os.getenv("https://your-qr-link.jpg")
+ADMINS = [int(x) for x in os.getenv("ADMINS", "").split() if x]
+
+UPI_ID = os.getenv("UPI_ID")
+OWNER = os.getenv("OWNER")
+
+LOGO = os.getenv("LOGO")
+QR = os.getenv("QR")
