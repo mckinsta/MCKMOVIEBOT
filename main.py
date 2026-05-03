@@ -7,16 +7,11 @@ app = Client(
     "movie_bot",
     bot_token=BOT_TOKEN,
     api_id=API_ID,
-    api_hash=API_HASH
+    api_hash=API_HASH,
+    plugins=dict(root="plugins")   # 🔥 plugins load
 )
 
-# ✅ TEST COMMAND (run च्या आधी ठेव)
-@app.on_message(filters.command("test"))
-async def test(client, message):
-    await message.reply("Bot working ✅")
-
-
-# 🔥 Dummy server for Koyeb
+# 🔥 Dummy server for Koyeb (port 8000)
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -29,5 +24,6 @@ def run_server():
 
 threading.Thread(target=run_server).start()
 
-# ✅ शेवटी run
+print("Bot Starting... 🚀")
+
 app.run()
